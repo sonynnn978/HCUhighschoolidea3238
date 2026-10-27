@@ -1,0 +1,990 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>꽃피는 학교생활 아이디어 제안함 🌷</title>
+
+  <style>
+    :root {
+      --rose: #c83e5b;
+      --deep-rose: #9f2946;
+      --pink: #f9dce5;
+      --cream: #fffaf0;
+      --green: #557c4c;
+      --text: #513a3b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 35px 16px 90px;
+      font-family: "Malgun Gothic", sans-serif;
+      color: var(--text);
+      background: linear-gradient(
+        180deg,
+        #fff5f3 0%,
+        #fffaf0 55%,
+        #e6f0d9 100%
+      );
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* 배경 꽃밭은 콘텐츠와 분리해 항상 화면 뒤에 유지합니다. */
+    #flowerGarden {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .garden-flower {
+      position: absolute;
+      bottom: -10px;
+      font-size: var(--size);
+      animation: gardenSway var(--duration) ease-in-out infinite alternate;
+      animation-delay: var(--delay);
+      transform-origin: bottom center;
+      opacity: 0.85;
+    }
+
+    @keyframes gardenSway {
+      from { transform: rotate(-9deg) translateY(0); }
+      to { transform: rotate(9deg) translateY(-8px); }
+    }
+
+    /* 화면의 실제 콘텐츠는 꽃밭보다 앞에 표시합니다. */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 790px;
+      margin: 0 auto;
+    }
+
+    .header {
+      position: relative;
+      overflow: hidden;
+      padding: 38px 22px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #a72c49, #e77c91);
+      border: 3px solid #fff0e6;
+      border-radius: 27px 27px 0 0;
+      box-shadow: 0 10px 25px #9f294620;
+    }
+
+    .header h1 {
+      position: relative;
+      margin: 0 0 12px;
+      font-size: 28px;
+      line-height: 1.5;
+    }
+
+    .header p {
+      position: relative;
+      line-height: 1.9;
+      margin: 0;
+    }
+
+    .header-flowers {
+      margin-top: 16px;
+      font-size: 25px;
+      letter-spacing: 5px;
+    }
+
+    .header-decoration {
+      position: absolute;
+      font-size: 48px;
+      opacity: 0.65;
+      animation: floatFlower 4s ease-in-out infinite alternate;
+    }
+
+    .header-decoration.left {
+      left: 14px;
+      top: 8px;
+    }
+
+    .header-decoration.right {
+      right: 14px;
+      bottom: 8px;
+      animation-delay: -2s;
+    }
+
+    @keyframes floatFlower {
+      to { transform: translateY(-12px) rotate(15deg); }
+    }
+
+    .content {
+      padding: 29px;
+      background: #fffdf9f5;
+      border: 2px solid #f6dce0;
+      border-top: none;
+      border-radius: 0 0 25px 25px;
+      box-shadow: 0 15px 35px #803b4710;
+      backdrop-filter: blur(5px);
+    }
+
+    .section-title {
+      margin: 0 0 22px;
+      color: var(--deep-rose);
+      font-size: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 21px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 9px;
+      font-weight: bold;
+    }
+
+    .required {
+      color: var(--rose);
+    }
+
+    input, select, textarea, button {
+      font: inherit;
+    }
+
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      padding: 13px 14px;
+      color: var(--text);
+      background: #fffaf5;
+      border: 1px solid #ebcbd0;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px #c83e5b20;
+    }
+
+    textarea {
+      min-height: 120px;
+      line-height: 1.8;
+      resize: vertical;
+    }
+
+    .primary-button {
+      width: 100%;
+      padding: 16px;
+      color: white;
+      background: linear-gradient(100deg, #c83e5b, #e66b82);
+      border: 0;
+      border-radius: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 12px #c83e5b30;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 17px #c83e5b40;
+    }
+
+    .primary-button:active {
+      transform: scale(0.98);
+    }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 13px;
+      border-radius: 10px;
+      line-height: 1.7;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0f0;
+      color: #b4233b;
+    }
+
+    .message.success {
+      display: block;
+      background: #edf8ef;
+      color: #267344;
+    }
+
+    .divider {
+      height: 2px;
+      margin: 34px 0;
+      background: linear-gradient(90deg, transparent, #efc3cc, transparent);
+    }
+
+    .list-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .list-heading h2 {
+      margin: 0;
+      color: var(--deep-rose);
+      font-size: 21px;
+    }
+
+    .count {
+      flex-shrink: 0;
+      padding: 7px 12px;
+      color: var(--deep-rose);
+      background: #fbe4e9;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .empty-message {
+      padding: 30px 14px;
+      color: #957779;
+      text-align: center;
+      line-height: 2;
+      background: #fffaf4;
+      border: 1px dashed #e7b5c0;
+      border-radius: 14px;
+    }
+
+    .idea-item {
+      margin-bottom: 20px;
+      padding: 19px;
+      background: white;
+      border: 1px solid #f0d6dc;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px #a43d5110;
+      animation: cardAppear 0.45s ease both;
+    }
+
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .idea-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 13px;
+    }
+
+    .category {
+      padding: 6px 11px;
+      color: var(--deep-rose);
+      background: #fbe4e9;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .idea-number {
+      color: #a18a8d;
+      font-size: 12px;
+    }
+
+    .author {
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .idea-content, .comment-content {
+      margin: 0;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .idea-date, .comment-date {
+      margin-top: 10px;
+      color: #a18a8d;
+      font-size: 12px;
+    }
+
+    .comments-section {
+      margin-top: 22px;
+      padding-top: 17px;
+      border-top: 1px dashed #edcbd2;
+    }
+
+    .comments-title {
+      margin: 0 0 13px;
+      color: var(--deep-rose);
+      font-size: 15px;
+    }
+
+    .comment-item {
+      margin-bottom: 10px;
+      padding: 12px;
+      background: #fff3f4;
+      border-radius: 10px;
+    }
+
+    .comment-author {
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .comment-content {
+      font-size: 14px;
+    }
+
+    .no-comments {
+      color: #a18a8d;
+      font-size: 13px;
+    }
+
+    .comment-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .comment-form textarea {
+      min-height: 75px;
+    }
+
+    .comment-button {
+      justify-self: end;
+      padding: 10px 16px;
+      color: var(--deep-rose);
+      background: #fff0f2;
+      border: 1px solid #edc4cc;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .comment-button:hover {
+      background: #f9dce5;
+    }
+
+    .comment-message {
+      display: none;
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .comment-message.error {
+      display: block;
+      color: #b4233b;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: #987e80;
+      font-size: 12px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    /* 글자를 입력할 때 피어나는 작은 꽃 */
+    .bloom {
+      position: fixed;
+      z-index: 100;
+      pointer-events: none;
+      font-size: 23px;
+      animation: bloomPop 1.1s ease-out forwards;
+    }
+
+    @keyframes bloomPop {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -40%) scale(0.1) rotate(-25deg);
+      }
+      35% {
+        opacity: 1;
+        transform: translate(-50%, -65%) scale(1.3) rotate(12deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -110px) scale(0.8) rotate(35deg);
+      }
+    }
+
+    /* 등록 순간 퍼지는 꽃잎 */
+    .petal {
+      position: fixed;
+      z-index: 200;
+      pointer-events: none;
+      font-size: 24px;
+      animation: petalBurst var(--duration) cubic-bezier(.15,.7,.3,1) forwards;
+    }
+
+    @keyframes petalBurst {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(0.5);
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy))
+          rotate(var(--rotation)) scale(1.2);
+      }
+    }
+
+    /* 나비와 벌이 화면을 가로질러 날아갑니다. */
+    .flying-creature {
+      position: fixed;
+      z-index: 201;
+      left: -60px;
+      pointer-events: none;
+      font-size: 34px;
+      animation: creatureFly var(--duration) ease-in-out forwards;
+    }
+
+    @keyframes creatureFly {
+      0% {
+        transform: translate(0, 0) rotate(-10deg) scale(0.7);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      35% {
+        transform: translate(35vw, -65px) rotate(12deg) scale(1.1);
+      }
+      65% {
+        transform: translate(70vw, 25px) rotate(-12deg) scale(1);
+      }
+      100% {
+        transform: translate(115vw, -35px) rotate(15deg) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 14px 9px 60px;
+      }
+
+      .header {
+        padding: 32px 14px;
+      }
+
+      .header h1 {
+        font-size: 22px;
+      }
+
+      .header-decoration {
+        font-size: 30px;
+      }
+
+      .content {
+        padding: 21px 15px;
+      }
+
+      .idea-item {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 화면 전체를 감싸는 꽃밭 배경 -->
+  <div id="flowerGarden" aria-hidden="true"></div>
+
+  <main class="container">
+    <header class="header">
+      <span class="header-decoration left" aria-hidden="true">🌷</span>
+      <span class="header-decoration right" aria-hidden="true">🌼</span>
+
+      <h1>🌹 꽃피는 학교생활 아이디어 제안함</h1>
+      <p>
+        여러분의 작은 생각이 우리 학교에 꽃을 피워요.<br>
+        좋은 아이디어를 나누고 함께 성장해 봐요!
+      </p>
+      <div class="header-flowers" aria-hidden="true">
+        🌸 🌼 🌷 🌻 🌸
+      </div>
+    </header>
+
+    <section class="content">
+      <section aria-labelledby="formTitle">
+        <h2 class="section-title" id="formTitle">
+          🌸 나의 아이디어 등록하기
+        </h2>
+
+        <form id="ideaForm" novalidate>
+          <div class="form-group">
+            <label for="author">
+              작성자 이름 <span class="required">*</span>
+            </label>
+            <input
+              id="author"
+              type="text"
+              maxlength="30"
+              placeholder="이름을 입력해 주세요."
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="category">
+              제안 분야 <span class="required">*</span>
+            </label>
+            <select id="category">
+              <option value="">분야를 선택해 주세요</option>
+              <option value="시설">🏫 시설</option>
+              <option value="수업">📚 수업</option>
+              <option value="급식">🍱 급식</option>
+              <option value="기타">🌷 기타</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ideaContent">
+              제안 내용 <span class="required">*</span>
+            </label>
+            <textarea
+              id="ideaContent"
+              maxlength="2000"
+              placeholder="어떤 점이 바뀌면 좋을까요? 자유롭게 적어 주세요."
+            ></textarea>
+          </div>
+
+          <button class="primary-button" type="submit">
+            🌷 아이디어 등록하고 꽃 피우기! 🌷
+          </button>
+
+          <div
+            id="formMessage"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </section>
+
+      <div class="divider"></div>
+
+      <section aria-labelledby="listTitle">
+        <div class="list-heading">
+          <h2 id="listTitle">💌 함께 나누는 아이디어</h2>
+          <span id="ideaCount" class="count">0개</span>
+        </div>
+
+        <div id="ideaList">
+          <div class="empty-message">
+            🌱 아직 피어난 아이디어가 없어요.<br>
+            첫 번째 아이디어로 꽃밭을 채워 주세요! 🌷
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        🌼 서로의 생각을 존중하고 따뜻한 댓글을 남겨 주세요. 🌼<br>
+        아이디어와 댓글은 Google Sheets에 저장됩니다. 🌱
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Google Apps Script 웹 앱 주소
+    const API_URL = "https://script.google.com/macros/s/AKfycbwCTA3kcALl2NtFykpKCya47530YuJOss3fS2-TZaJIBEUgAWylbDsEtdyBvbQ3K2X2ag/exec";
+
+    let ideas = [];
+    let isSubmittingIdea = false;
+
+    const flowerGarden = document.getElementById("flowerGarden");
+    const ideaForm = document.getElementById("ideaForm");
+    const authorInput = document.getElementById("author");
+    const categoryInput = document.getElementById("category");
+    const contentInput = document.getElementById("ideaContent");
+    const formMessage = document.getElementById("formMessage");
+    const ideaList = document.getElementById("ideaList");
+    const ideaCount = document.getElementById("ideaCount");
+
+    const flowers = ["🌸", "🌼", "🌷", "🌺", "🌻", "💮", "🍀"];
+    const petals = ["🌸", "🌼", "🌷", "🌺", "💮", "✨"];
+
+    // JSONP 방식으로 Google Apps Script의 목록을 불러옵니다.
+    // GitHub Pages와 Apps Script 사이의 브라우저 CORS 제한을 피하기 위한 방식입니다.
+    function loadIdeas() {
+      return new Promise(function(resolve, reject) {
+        const callbackName = "ideaBoxCallback_" + Date.now() + "_" +
+          Math.floor(Math.random() * 100000);
+        const script = document.createElement("script");
+        const timeout = setTimeout(function() {
+          cleanup();
+          reject(new Error("서버 응답 시간이 초과되었습니다."));
+        }, 15000);
+
+        function cleanup() {
+          clearTimeout(timeout);
+          delete window[callbackName];
+          script.remove();
+        }
+
+        window[callbackName] = function(response) {
+          cleanup();
+          if (!response || response.ok !== true || !Array.isArray(response.ideas)) {
+            reject(new Error((response && response.error) || "아이디어 목록을 불러오지 못했습니다."));
+            return;
+          }
+          ideas = response.ideas.map(function(idea) {
+            return {
+              id: String(idea.id || ""),
+              author: String(idea.author || ""),
+              category: String(idea.category || ""),
+              content: String(idea.content || ""),
+              date: String(idea.date || ""),
+              comments: Array.isArray(idea.comments) ? idea.comments.map(function(comment) {
+                return {
+                  id: String(comment.id || ""),
+                  ideaId: String(comment.ideaId || idea.id || ""),
+                  author: String(comment.author || ""),
+                  content: String(comment.content || ""),
+                  date: String(comment.date || "")
+                };
+              }) : []
+            };
+          });
+          renderIdeas();
+          resolve(ideas);
+        };
+
+        script.onerror = function() {
+          cleanup();
+          reject(new Error("서버에 연결할 수 없습니다. 웹 앱 배포 주소와 액세스 권한을 확인해 주세요."));
+        };
+
+        script.src = API_URL + "?action=listIdeas&callback=" +
+          encodeURIComponent(callbackName) + "&_=" + Date.now();
+        document.body.appendChild(script);
+      });
+    }
+
+    // HTML form-urlencoded 형식으로 POST 요청을 보냅니다.
+    // no-cors 모드에서는 응답 본문을 직접 읽을 수 없으므로,
+    // 이후 목록을 다시 불러와 실제 저장 여부를 확인합니다.
+    function postToServer(params) {
+      const body = new URLSearchParams();
+      Object.keys(params).forEach(function(key) {
+        body.append(key, params[key]);
+      });
+
+      return fetch(API_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: body
+      });
+    }
+
+    function createFlowerGarden() {
+      flowerGarden.replaceChildren();
+      const flowerCount = Math.min(100, Math.max(35, Math.floor(window.innerWidth / 12)));
+
+      for (let i = 0; i < flowerCount; i++) {
+        const flower = document.createElement("span");
+        flower.className = "garden-flower";
+        flower.textContent = flowers[i % flowers.length];
+        flower.style.left = (i / flowerCount * 100) + "%";
+        flower.style.setProperty("--size", (20 + Math.random() * 22) + "px");
+        flower.style.setProperty("--duration", (2 + Math.random() * 3) + "s");
+        flower.style.setProperty("--delay", (-Math.random() * 4) + "s");
+        flower.style.bottom = (-5 + Math.random() * 15) + "px";
+        flowerGarden.appendChild(flower);
+      }
+    }
+
+    function bloomAtInput(input) {
+      if (!input.value) return;
+      const rect = input.getBoundingClientRect();
+      const flower = document.createElement("span");
+      flower.className = "bloom";
+      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+      const textOffset = Math.min(rect.width - 20, 18 + input.value.length * 7);
+      flower.style.left = (rect.left + textOffset) + "px";
+      flower.style.top = (rect.top + 12 + Math.random() * 24) + "px";
+      document.body.appendChild(flower);
+      flower.addEventListener("animationend", function() { flower.remove(); }, { once: true });
+    }
+
+    function burstFlowers() {
+      const centerX = window.innerWidth / 2;
+      const centerY = Math.min(window.innerHeight * 0.48, 420);
+
+      for (let i = 0; i < 48; i++) {
+        const petal = document.createElement("span");
+        petal.className = "petal";
+        petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+        petal.style.left = centerX + "px";
+        petal.style.top = centerY + "px";
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 90 + Math.random() * 270;
+        petal.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+        petal.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+        petal.style.setProperty("--rotation", (Math.random() * 900 - 450) + "deg");
+        petal.style.setProperty("--duration", (0.9 + Math.random() * 1.1) + "s");
+        document.body.appendChild(petal);
+        petal.addEventListener("animationend", function() { petal.remove(); }, { once: true });
+      }
+    }
+
+    function releaseButterfliesAndBees() {
+      ["🦋", "🐝", "🦋", "🐝", "🦋", "🐝", "🦋"].forEach(function(emoji, index) {
+        const creature = document.createElement("span");
+        creature.className = "flying-creature";
+        creature.textContent = emoji;
+        creature.style.top = (15 + Math.random() * 70) + "vh";
+        creature.style.setProperty("--duration", (2.6 + Math.random() * 2) + "s");
+        creature.style.animationDelay = (index * 0.13) + "s";
+        document.body.appendChild(creature);
+        creature.addEventListener("animationend", function() { creature.remove(); }, { once: true });
+      });
+    }
+
+    function showMessage(element, text, type) {
+      element.textContent = text;
+      element.className = "message " + type;
+    }
+
+    function renderIdeas() {
+      ideaCount.textContent = ideas.length + "개";
+      ideaList.replaceChildren();
+
+      if (ideas.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty-message";
+        empty.textContent = "🌱 아직 피어난 아이디어가 없어요. 첫 번째 아이디어를 등록해 보세요! 🌷";
+        ideaList.appendChild(empty);
+        return;
+      }
+
+      ideas.forEach(function(idea, index) {
+        const item = document.createElement("article");
+        item.className = "idea-item";
+
+        const top = document.createElement("div");
+        top.className = "idea-top";
+
+        const category = document.createElement("span");
+        category.className = "category";
+        category.textContent = "🌸 " + idea.category;
+
+        const number = document.createElement("span");
+        number.className = "idea-number";
+        number.textContent = "아이디어 " + (ideas.length - index);
+        top.append(category, number);
+
+        const author = document.createElement("div");
+        author.className = "author";
+        author.textContent = "🌷 작성자: " + idea.author;
+
+        const content = document.createElement("p");
+        content.className = "idea-content";
+        content.textContent = idea.content;
+
+        const date = document.createElement("div");
+        date.className = "idea-date";
+        date.textContent = "등록 시간: " + (idea.date || "시간 정보 없음");
+        item.append(top, author, content, date);
+
+        const commentsSection = document.createElement("section");
+        commentsSection.className = "comments-section";
+
+        const title = document.createElement("h3");
+        title.className = "comments-title";
+        title.textContent = "💬 댓글 (" + idea.comments.length + ")";
+        commentsSection.appendChild(title);
+
+        if (idea.comments.length === 0) {
+          const emptyComment = document.createElement("p");
+          emptyComment.className = "no-comments";
+          emptyComment.textContent = "아직 댓글이 없어요. 첫 댓글을 남겨 보세요!";
+          commentsSection.appendChild(emptyComment);
+        }
+
+        idea.comments.forEach(function(comment) {
+          const commentItem = document.createElement("div");
+          commentItem.className = "comment-item";
+
+          const commentAuthor = document.createElement("div");
+          commentAuthor.className = "comment-author";
+          commentAuthor.textContent = "🌼 " + comment.author;
+
+          const commentContent = document.createElement("p");
+          commentContent.className = "comment-content";
+          commentContent.textContent = comment.content;
+
+          const commentDate = document.createElement("div");
+          commentDate.className = "comment-date";
+          commentDate.textContent = comment.date || "";
+          commentItem.append(commentAuthor, commentContent, commentDate);
+          commentsSection.appendChild(commentItem);
+        });
+
+        const commentForm = document.createElement("form");
+        commentForm.className = "comment-form";
+        commentForm.noValidate = true;
+
+        const nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.maxLength = 30;
+        nameInput.placeholder = "댓글 작성자 이름";
+        nameInput.setAttribute("aria-label", "댓글 작성자 이름");
+        nameInput.required = true;
+
+        const textInput = document.createElement("textarea");
+        textInput.maxLength = 1000;
+        textInput.placeholder = "따뜻한 댓글을 남겨 주세요.";
+        textInput.setAttribute("aria-label", "댓글 내용");
+        textInput.required = true;
+
+        const commentButton = document.createElement("button");
+        commentButton.type = "submit";
+        commentButton.className = "comment-button";
+        commentButton.textContent = "댓글 등록 💌";
+
+        const commentMessage = document.createElement("div");
+        commentMessage.className = "comment-message";
+        commentMessage.setAttribute("role", "status");
+
+        commentForm.append(nameInput, textInput, commentButton);
+        commentsSection.append(commentForm, commentMessage);
+        item.appendChild(commentsSection);
+        ideaList.appendChild(item);
+
+        commentForm.addEventListener("submit", async function(event) {
+          event.preventDefault();
+          const commentAuthor = nameInput.value.trim();
+          const commentContentValue = textInput.value.trim();
+
+          if (!commentAuthor || !commentContentValue) {
+            commentMessage.textContent = "댓글 작성자 이름과 댓글 내용을 모두 입력해 주세요.";
+            commentMessage.className = "comment-message error";
+            return;
+          }
+
+          commentButton.disabled = true;
+          commentButton.textContent = "저장 중…";
+          const previousCount = idea.comments.length;
+
+          try {
+            await postToServer({
+              action: "addComment",
+              ideaId: idea.id,
+              author: commentAuthor,
+              content: commentContentValue
+            });
+            await new Promise(function(resolve) { setTimeout(resolve, 900); });
+            await loadIdeas();
+
+            const refreshedIdea = ideas.find(function(savedIdea) {
+              return savedIdea.id === idea.id;
+            });
+            if (refreshedIdea && refreshedIdea.comments.length > previousCount) {
+              // 목록 갱신으로 댓글이 반영되었습니다.
+              return;
+            }
+            commentMessage.textContent = "저장 여부를 확인하지 못했어요. 잠시 후 새로고침해 확인해 주세요.";
+            commentMessage.className = "comment-message error";
+          } catch (error) {
+            commentMessage.textContent = "댓글을 저장하거나 불러오지 못했어요. " + error.message;
+            commentMessage.className = "comment-message error";
+          } finally {
+            commentButton.disabled = false;
+            commentButton.textContent = "댓글 등록 💌";
+          }
+        });
+      });
+    }
+
+    ideaForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+      if (isSubmittingIdea) return;
+
+      const author = authorInput.value.trim();
+      const category = categoryInput.value;
+      const content = contentInput.value.trim();
+
+      if (!author || !category || !content) {
+        showMessage(formMessage, "작성자 이름, 제안 분야, 제안 내용을 모두 입력해 주세요. 🌷", "error");
+        return;
+      }
+
+      isSubmittingIdea = true;
+      const submitButton = ideaForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = "꽃을 피우는 중…";
+
+      try {
+        await postToServer({
+          action: "saveIdea",
+          author: author,
+          category: category,
+          content: content
+        });
+
+        // POST 응답은 브라우저 CORS 정책상 읽지 않고, 목록 재조회로 저장 여부를 확인합니다.
+        let saved = false;
+        for (let attempt = 0; attempt < 4; attempt++) {
+          await new Promise(function(resolve) { setTimeout(resolve, attempt === 0 ? 900 : 700); });
+          await loadIdeas();
+          saved = ideas.some(function(idea) {
+            return idea.author === author &&
+              idea.category === category &&
+              idea.content === content;
+          });
+          if (saved) break;
+        }
+
+        if (saved) {
+          burstFlowers();
+          releaseButterfliesAndBees();
+          ideaForm.reset();
+          showMessage(formMessage, "아이디어가 Google Sheets에 저장되었어요! 꽃과 나비가 여러분의 생각을 축하해요! 🌸🦋", "success");
+        } else {
+          showMessage(formMessage, "요청은 보냈지만 저장 여부를 확인하지 못했어요. Apps Script 배포 버전과 실행 권한을 확인한 뒤 새로고침해 주세요.", "error");
+        }
+      } catch (error) {
+        showMessage(formMessage, "서버와 연결하지 못했어요. 웹 앱 배포 주소와 액세스 권한을 확인해 주세요. (" + error.message + ")", "error");
+      } finally {
+        isSubmittingIdea = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "🌷 아이디어 등록하고 꽃 피우기! 🌷";
+      }
+    });
+
+    [authorInput, contentInput].forEach(function(input) {
+      input.addEventListener("input", function() { bloomAtInput(input); });
+    });
+
+    createFlowerGarden();
+    window.addEventListener("resize", createFlowerGarden);
+
+    // 처음 열릴 때 저장된 데이터를 불러옵니다.
+    loadIdeas().catch(function(error) {
+      showMessage(formMessage, "저장된 아이디어를 불러오지 못했어요. Apps Script가 웹 앱으로 배포되어 있는지 확인해 주세요. (" + error.message + ")", "error");
+    });
+  </script>
+</body>
+</html>
